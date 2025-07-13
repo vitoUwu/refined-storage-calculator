@@ -78,7 +78,6 @@ export function Modal({
           className,
         )}
       >
-        {/* Header */}
         {(title || showCloseButton) && (
           <div className="flex items-center justify-between p-4">
             {title && (
@@ -99,7 +98,6 @@ export function Modal({
           </div>
         )}
 
-        {/* Content */}
         <div className="overflow-y-auto max-h-[calc(90vh-8rem)]">
           {children}
         </div>

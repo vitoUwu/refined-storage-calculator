@@ -6,12 +6,13 @@ import { getCraftingMethodIcon, getMaterialIcon } from "../data/icons";
 import { baseMaterials, recipes } from "../data/recipes";
 import { Recipe } from "../types";
 import { formatQuantity } from "../utils/formatUtils";
-import { Button, ListItem, Modal, ModalContent } from "./ui";
+import { Button, Card, ListItem, Modal, ModalContent } from "./ui";
 
 interface CraftingTreeProps {
   itemId: string;
   quantity?: number;
   onClose: () => void;
+  isFullPage?: boolean;
 }
 
 interface TreeNode {
@@ -25,7 +26,7 @@ interface TreeNode {
 }
 
 export function CraftingTree(
-  { itemId, quantity = 1, onClose }: CraftingTreeProps,
+  { itemId, quantity = 1, onClose, isFullPage = false }: CraftingTreeProps,
 ) {
   const { t, showAsPacks, language } = useLanguage();
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
@@ -84,8 +85,7 @@ export function CraftingTree(
     return (
       <ul
         key={nodePath}
-        className="mb-2"
-        style={{ marginLeft: `${node.level * 20}px` }}
+        className="mb-2 ml-4"
       >
         <ListItem
           className={cn(
@@ -121,7 +121,6 @@ export function CraftingTree(
                 {node.itemName}
               </span>
 
-              {/* Informações da Receita */}
               {node.recipe && (
                 <div className="flex items-center space-x-2 text-xs text-vanilla-grey-2 mt-1">
                   <span>
@@ -161,12 +160,8 @@ export function CraftingTree(
           </div>
         </ListItem>
 
-        {/* Filhos */}
         {hasChildren && isExpanded && (
-          <li
-            className="ml-4 mt-2 border-l-2 border-core-grey-3 pl-2 list-none"
-            style={{ marginLeft: `${(node.level + 1) * 20}px` }}
-          >
+          <li className="ml-4 mt-2 border-l-2 border-core-grey-3 pl-2 list-none">
             {node.children.map((child) => renderNode(child, nodePath))}
           </li>
         )}
@@ -188,6 +183,72 @@ export function CraftingTree(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemId]);
 
+  const content = (
+    <>
+      <div className="p-4">
+        <div className="flex items-center space-x-3">
+          {getMaterialIcon(itemId)}
+          <div>
+            <h3 className="text-lg font-medium text-white">
+              {t.materials[itemId as keyof typeof t.materials] || itemId}
+            </h3>
+            <p className="text-vanilla-grey-2">
+              {formatQuantity(quantity, showAsPacks, language)}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <ListItem className="p-1 m-4 w-auto h-auto">
+        <div className="p-3">
+          <div className="flex items-center space-x-6 text-sm">
+            <div className="flex items-center space-x-2">
+              <Button variant="success" size="sm" className="size-8 p-0">
+                ●
+              </Button>
+              <span className="text-vanilla-grey-2">{t.baseMaterials}</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Button variant="realms" size="sm" className="size-8 p-0">
+                ●
+              </Button>
+              <span className="text-vanilla-grey-2">
+                {t.intermediateMaterials}
+              </span>
+            </div>
+            <div className="text-vanilla-grey-2">
+              {t.clickToExpand}
+            </div>
+          </div>
+        </div>
+      </ListItem>
+
+      <div
+        className={`p-4 overflow-y-auto ${
+          isFullPage ? "max-h-[calc(100vh-300px)]" : "max-h-[60vh]"
+        }`}
+      >
+        {renderNode(tree)}
+      </div>
+
+      <ListItem className="m-4 mt-0 w-auto h-auto">
+        <div className="p-3 text-center">
+          <p className="text-sm">
+            {t.craftingOrder}
+          </p>
+        </div>
+      </ListItem>
+    </>
+  );
+
+  if (isFullPage) {
+    return (
+      <Card className="p-3">
+        {content}
+      </Card>
+    );
+  }
+
   return (
     <Modal
       isOpen={true}
@@ -196,59 +257,7 @@ export function CraftingTree(
       title={t.craftingTree}
     >
       <ModalContent className="p-0">
-        {/* Header com info do item */}
-        <div className="p-4">
-          <div className="flex items-center space-x-3">
-            {getMaterialIcon(itemId)}
-            <div>
-              <h3 className="text-lg font-medium text-white">
-                {t.materials[itemId as keyof typeof t.materials] || itemId}
-              </h3>
-              <p className="text-vanilla-grey-2">
-                {formatQuantity(quantity, showAsPacks, language)}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Legenda */}
-        <ListItem className="p-1 m-4 w-auto h-auto">
-          <div className="p-3">
-            <div className="flex items-center space-x-6 text-sm">
-              <div className="flex items-center space-x-2">
-                <Button variant="success" size="sm" className="size-8 p-0">
-                  ●
-                </Button>
-                <span className="text-vanilla-grey-2">{t.baseMaterials}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Button variant="realms" size="sm" className="size-8 p-0">
-                  ●
-                </Button>
-                <span className="text-vanilla-grey-2">
-                  {t.intermediateMaterials}
-                </span>
-              </div>
-              <div className="text-vanilla-grey-2">
-                {t.clickToExpand}
-              </div>
-            </div>
-          </div>
-        </ListItem>
-
-        {/* Árvore */}
-        <div className="p-4 overflow-y-auto max-h-[60vh]">
-          {renderNode(tree)}
-        </div>
-
-        {/* Footer */}
-        <ListItem className="m-4 mt-0 w-auto h-auto">
-          <div className="p-3 text-center">
-            <p className="text-sm">
-              {t.craftingOrder}
-            </p>
-          </div>
-        </ListItem>
+        {content}
       </ModalContent>
     </Modal>
   );

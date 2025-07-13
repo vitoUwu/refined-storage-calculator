@@ -1,10 +1,10 @@
 import { ListTree, Search } from "lucide-react";
 import { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import { getCategoryIcon, getMaterialIcon } from "../data/icons";
 import { CraftingSelection, Recipe } from "../types";
 import { RefinedStorageCalculator } from "../utils/calculator";
-import { CraftingTree } from "./CraftingTree";
 import { Button, Card, CardContent, CardHeader, Input, ListItem } from "./ui";
 import { Select } from "./ui/Select";
 
@@ -18,11 +18,9 @@ export function ItemSelector(
   { calculator, selection, onSelectionChange }: ItemSelectorProps,
 ) {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [showCraftingTree, setShowCraftingTree] = useState<
-    { itemId: string; quantity: number } | null
-  >(null);
 
   const recipesByCategory = useMemo(() => calculator.getRecipesByCategory(), [
     calculator,
@@ -57,7 +55,7 @@ export function ItemSelector(
 
   const openCraftingTree = (itemId: string) => {
     const quantity = selection[itemId] || 1;
-    setShowCraftingTree({ itemId, quantity });
+    navigate(`/crafting-tree?item=${itemId}&quantity=${quantity}`);
   };
 
   return (
@@ -66,7 +64,6 @@ export function ItemSelector(
         <h2 className="text-2xl font-medium text-white">{t.selectItems}</h2>
       </CardHeader>
       <CardContent>
-        {/* Busca e Filtros */}
         <div className="mb-6 space-y-4">
           <Input
             type="text"
@@ -94,7 +91,6 @@ export function ItemSelector(
           </div>
         </div>
 
-        {/* Lista de Items */}
         <ul className="max-h-96 overflow-y-auto">
           {filteredRecipes.map((recipe) => (
             <ListItem
@@ -119,7 +115,6 @@ export function ItemSelector(
               </div>
 
               <div className="flex items-center space-x-3">
-                {/* Botão Árvore de Crafting */}
                 <Button
                   onClick={() => openCraftingTree(recipe.output.item)}
                   variant="secondary"
@@ -173,7 +168,6 @@ export function ItemSelector(
           ))}
         </ul>
 
-        {/* Items Selecionados */}
         {Object.keys(selection).length > 0 && (
           <div className="mt-6 pt-6">
             <h3 className="text-lg font-medium text-white mb-3">
@@ -224,15 +218,6 @@ export function ItemSelector(
               {t.clearSelection}
             </Button>
           </div>
-        )}
-
-        {/* Modal da Árvore de Crafting */}
-        {showCraftingTree && (
-          <CraftingTree
-            itemId={showCraftingTree.itemId}
-            quantity={showCraftingTree.quantity}
-            onClose={() => setShowCraftingTree(null)}
-          />
         )}
       </CardContent>
     </Card>

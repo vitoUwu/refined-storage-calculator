@@ -6,6 +6,7 @@ import "./index.css";
 
 const Index = lazy(() => import("./pages/index"));
 const DesignSystem = lazy(() => import("./pages/design-system"));
+const CraftingTreePage = lazy(() => import("./pages/crafting-tree"));
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/design-system",
     Component: DesignSystem,
+  },
+  {
+    path: "/crafting-tree",
+    Component: CraftingTreePage,
   },
 ]);
 

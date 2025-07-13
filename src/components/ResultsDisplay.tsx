@@ -84,7 +84,6 @@ export function ResultsDisplay({ results }: ResultsDisplayProps) {
         </div>
       </CardHeader>
       <CardContent>
-        {/* Materiais Base */}
         {baseMats.length > 0 && (
           <div className="mb-6">
             <h3 className="text-lg font-medium text-green-400 mb-4 flex items-center">
@@ -109,7 +108,6 @@ export function ResultsDisplay({ results }: ResultsDisplayProps) {
           </div>
         )}
 
-        {/* Materiais Intermediários */}
         {intermediateMats.length > 0 && (
           <div className="mb-6">
             <h3 className="text-lg font-medium text-yellow-400 mb-4 flex items-center">
@@ -146,7 +144,6 @@ export function ResultsDisplay({ results }: ResultsDisplayProps) {
           </div>
         )}
 
-        {/* Breakdown Detalhado */}
         {showBreakdown && (
           <div className="mt-6 pt-6">
             <h3 className="text-lg font-medium text-white mb-4">
@@ -193,7 +190,6 @@ export function ResultsDisplay({ results }: ResultsDisplayProps) {
           </div>
         )}
 
-        {/* Resumo Total */}
         <div className="mt-6 pt-6 pb-4">
           <h3 className="text-lg font-medium text-white mb-2">
             {t.totalSummary}

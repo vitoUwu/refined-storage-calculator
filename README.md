@@ -1,15 +1,22 @@
 # Refined Storage Calculator
 
-A comprehensive resource calculator for the Refined Storage mod in Minecraft. This tool helps players calculate the exact materials needed to craft any combination of Refined Storage items, including processors, storage disks, and system components.
+A comprehensive resource calculator for the Refined Storage mod in Minecraft.
+This tool helps players calculate the exact materials needed to craft any
+combination of Refined Storage items, including processors, storage disks, and
+system components.
 
 ## Features
 
-- 🔧 **Complete Recipe Database**: Includes all Refined Storage items and their crafting recipes
-- 📊 **Material Breakdown**: Shows both base materials and intermediate items required
-- 🌳 **Crafting Tree Visualization**: Visual representation of the crafting process
+- 🔧 **Complete Recipe Database**: Includes all Refined Storage items and their
+  crafting recipes
+- 📊 **Material Breakdown**: Shows both base materials and intermediate items
+  required
+- 🌳 **Crafting Tree Visualization**: Visual representation of the crafting
+  process
 - 🌐 **Multi-language Support**: Available in Portuguese and English
 - 📱 **Responsive Design**: Works on desktop and mobile devices
-- 🎨 **Minecraft-themed UI**: Custom fonts and styling that matches the game's aesthetic
+- 🎨 **Minecraft-themed UI**: Custom fonts and styling that matches the game's
+  aesthetic
 - 📦 **Pack Display**: Option to show results in stacks of 64 items
 
 ## Categories
@@ -32,12 +39,14 @@ The calculator includes items from all major Refined Storage categories:
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/refined-storage-calculator
 cd refined-storage-calculator
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -45,6 +54,7 @@ bun install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 # or
@@ -115,7 +125,8 @@ To add new Refined Storage items:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
+for details.
 
 ## Acknowledgments
 
@@ -133,4 +144,5 @@ If you encounter any issues or have suggestions for improvements, please:
 
 ---
 
-**Note**: This calculator is a fan-made tool and is not officially associated with the Refined Storage mod or its developers.
+**Note**: This calculator is a fan-made tool and is not officially associated
+with the Refined Storage mod or its developers.

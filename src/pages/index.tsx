@@ -23,7 +23,6 @@ export default function Index() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
       <header className="bg-[#262423e6] shadow-[0_4px_0_0_rgba(0,0,0,.25)]">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
@@ -39,7 +38,6 @@ export default function Index() {
               </p>
             </div>
 
-            {/* Language Selector */}
             <div className="flex items-center space-x-2">
               <Globe className="w-5 h-5 text-gray-400" />
               <Select
@@ -55,10 +53,8 @@ export default function Index() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Seleção de Items */}
           <div>
             <ItemSelector
               calculator={calculator}
@@ -67,13 +63,11 @@ export default function Index() {
             />
           </div>
 
-          {/* Resultados */}
           <div>
             <ResultsDisplay results={results} />
           </div>
         </div>
 
-        {/* Informações Adicionais */}
         <Card className="mt-12">
           <CardContent>
             <h2 className="text-2xl font-medium text-white mb-6">
@@ -113,7 +107,6 @@ export default function Index() {
           </CardContent>
         </Card>
 
-        {/* Footer */}
         <footer className="mt-12 text-center text-gray-500 text-sm">
           <p>
             Calculadora de Recursos para Refined Storage • Todas as receitas

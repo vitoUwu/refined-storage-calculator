@@ -6,12 +6,22 @@ import {
 } from "../types";
 import { baseMaterials, recipes } from "../data/recipes";
 
+const IGNORE_RECIPES = [
+  "quartz_enriched_iron_from_block",
+  "quartz_enriched_iron_block",
+];
+
 export class RefinedStorageCalculator {
   private recipeMap: Map<string, Recipe>;
 
   constructor() {
     this.recipeMap = new Map();
     recipes.forEach((recipe) => {
+      if (IGNORE_RECIPES.includes(recipe.id)) {
+        console.warn("Ignoring recipe to avoid circular dependency", recipe.id);
+        return;
+      }
+
       this.recipeMap.set(recipe.output.item, recipe);
     });
   }
@@ -45,8 +55,16 @@ export class RefinedStorageCalculator {
   private calculateItemMaterials(
     itemId: string,
     quantity: number,
+    processingStack: Set<string> = new Set(),
   ): MaterialCost {
     const materials: MaterialCost = {};
+
+    // Check for circular dependency
+    if (processingStack.has(itemId)) {
+      console.warn(`Circular dependency detected for item: ${itemId}`);
+      materials[itemId] = quantity;
+      return materials;
+    }
 
     if (baseMaterials.includes(itemId)) {
       materials[itemId] = quantity;
@@ -59,6 +77,9 @@ export class RefinedStorageCalculator {
       return materials;
     }
 
+    // Add current item to processing stack
+    processingStack.add(itemId);
+
     const recipesNeeded = Math.ceil(quantity / recipe.output.quantity);
 
     for (const ingredient of recipe.ingredients) {
@@ -67,10 +88,14 @@ export class RefinedStorageCalculator {
       const ingredientMaterials = this.calculateItemMaterials(
         ingredient.item,
         neededQuantity,
+        processingStack,
       );
 
       this.addMaterials(materials, ingredientMaterials);
     }
+
+    // Remove current item from processing stack
+    processingStack.delete(itemId);
 
     return materials;
   }

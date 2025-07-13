@@ -52,6 +52,12 @@ export interface Translation {
     "Storage Disks": string;
     "Blocos Principais": string;
     "Interface": string;
+    "Input/Output": string;
+    "Wireless": string;
+    "Autocrafting": string;
+    "Security": string;
+    "Utility": string;
+    "Upgrades": string;
   };
 
   // Materials
@@ -67,12 +73,17 @@ export interface Translation {
     crafting_table: string;
     quartz_enriched_iron: string;
     silicon: string;
+    string: string;
+    slimeball: string;
+    processor_binding: string;
     raw_basic_processor: string;
     raw_improved_processor: string;
     raw_advanced_processor: string;
     basic_processor: string;
     improved_processor: string;
     advanced_processor: string;
+    construction_core: string;
+    destruction_core: string;
     storage_housing: string;
     machine_casing: string;
     "1k_storage_part": string;
@@ -85,8 +96,34 @@ export interface Translation {
     "64k_storage_disk": string;
     controller: string;
     disk_drive: string;
+    cable: string;
     grid: string;
     crafting_grid: string;
+    pattern_grid: string;
+    importer: string;
+    exporter: string;
+    constructor: string;
+    destructor: string;
+    interface: string;
+    external_storage: string;
+    wireless_transmitter: string;
+    network_card: string;
+    wireless_grid: string;
+    wireless_crafting_grid: string;
+    pattern: string;
+    autocrafter: string;
+    autocrafting_monitor: string;
+    security_manager: string;
+    security_card: string;
+    wrench: string;
+    configuration_card: string;
+    detector: string;
+    relay: string;
+    upgrade: string;
+    range_upgrade: string;
+    speed_upgrade: string;
+    stack_upgrade: string;
+    autocrafting_upgrade: string;
   };
 
   // Pack display
@@ -121,39 +158,36 @@ export const translations: { [key: string]: Translation } = {
 
     // Results Display
     requiredMaterials: "Materiais Necessários",
-    showDetails: "Mostrar Detalhes",
-    hideDetails: "Ocultar Detalhes",
+    showDetails: "Mostrar detalhes",
+    hideDetails: "Ocultar detalhes",
     baseMaterials: "Materiais Base",
     intermediateMaterials: "Materiais Intermediários",
-    breakdownByItem: "Breakdown por Item",
+    breakdownByItem: "Detalhamento por Item",
     totalSummary: "Resumo Total",
-    baseMaterialTypes: "Tipos de Materiais Base:",
-    intermediateMaterialTypes: "Tipos de Materiais Intermediários:",
-    totalBaseItems: "Total de Items Base:",
-    totalIntermediateItems: "Total de Items Intermediários:",
-    selectItemsToSee:
-      "Selecione alguns items para ver os materiais necessários.",
-    displayMode: "Modo de Exibição",
-    showAsPacks: "Mostrar em Packs",
-    showAsQuantity: "Mostrar Quantidade",
+    baseMaterialTypes: "Tipos de materiais base",
+    intermediateMaterialTypes: "Tipos de materiais intermediários",
+    totalBaseItems: "Total de itens base",
+    totalIntermediateItems: "Total de itens intermediários",
+    selectItemsToSee: "Selecione items para ver os materiais necessários",
+    displayMode: "Modo de exibição",
+    showAsPacks: "Mostrar como pacotes",
+    showAsQuantity: "Mostrar como quantidade",
 
     // Crafting Tree
     craftingTree: "Árvore de Crafting",
-    clickToExpand: "Clique nos items com seta para expandir/recolher",
-    craftingOrder:
-      "Esta árvore mostra a ordem de crafting: Materiais Base → Intermediários → Item Final",
+    clickToExpand: "Clique para expandir",
+    craftingOrder: "Ordem de Fabricação",
 
     // How to Use
     howToUse: "Como Usar",
-    step1Title: "Selecione Items",
+    step1Title: "1. Selecione os Items",
     step1Description:
-      "Use a busca ou filtros por categoria para encontrar os items que você quer craftar. Ajuste as quantidades conforme necessário.",
-    step2Title: "Veja os Materiais",
-    step2Description:
-      "A calculadora mostra todos os materiais base necessários (ferro, quartzo, etc.) e materiais intermediários que você precisará craftar.",
-    step3Title: "Planeje sua Farm",
+      "Escolha os items do Refined Storage que você deseja craftar",
+    step2Title: "2. Defina as Quantidades",
+    step2Description: "Especifique quantos de cada item você precisa fabricar",
+    step3Title: "3. Veja os Resultados",
     step3Description:
-      "Use o breakdown detalhado para entender exatamente como os materiais são distribuídos entre os diferentes items.",
+      "Veja o detalhamento completo de todos os materiais necessários",
 
     // Categories
     categories: {
@@ -164,12 +198,18 @@ export const translations: { [key: string]: Translation } = {
       "Storage Disks": "Discos de Armazenamento",
       "Blocos Principais": "Blocos Principais",
       "Interface": "Interface",
+      "Input/Output": "Entrada/Saída",
+      "Wireless": "Wireless",
+      "Autocrafting": "Autocrafting",
+      "Security": "Segurança",
+      "Utility": "Utilidade",
+      "Upgrades": "Upgrades",
     },
 
     // Materials
     materials: {
-      iron_ingot: "Lingote de Ferro",
-      gold_ingot: "Lingote de Ouro",
+      iron_ingot: "Barra de Ferro",
+      gold_ingot: "Barra de Ouro",
       diamond: "Diamante",
       nether_quartz: "Quartzo do Nether",
       redstone: "Redstone",
@@ -179,39 +219,70 @@ export const translations: { [key: string]: Translation } = {
       crafting_table: "Mesa de Trabalho",
       quartz_enriched_iron: "Ferro Enriquecido com Quartzo",
       silicon: "Silício",
-      raw_basic_processor: "Processador Básico Cru",
-      raw_improved_processor: "Processador Melhorado Cru",
-      raw_advanced_processor: "Processador Avançado Cru",
+      string: "Barbante",
+      slimeball: "Bola de Slime",
+      processor_binding: "Encadernação de Processador",
+      raw_basic_processor: "Processador Básico Bruto",
+      raw_improved_processor: "Processador Melhorado Bruto",
+      raw_advanced_processor: "Processador Avançado Bruto",
       basic_processor: "Processador Básico",
       improved_processor: "Processador Melhorado",
       advanced_processor: "Processador Avançado",
+      construction_core: "Núcleo de Construção",
+      destruction_core: "Núcleo de Destruição",
       storage_housing: "Invólucro de Armazenamento",
-      machine_casing: "Invólucro de Máquina",
-      "1k_storage_part": "Parte de Armazenamento 1k",
-      "4k_storage_part": "Parte de Armazenamento 4k",
-      "16k_storage_part": "Parte de Armazenamento 16k",
-      "64k_storage_part": "Parte de Armazenamento 64k",
-      "1k_storage_disk": "Disco de Armazenamento 1k",
-      "4k_storage_disk": "Disco de Armazenamento 4k",
-      "16k_storage_disk": "Disco de Armazenamento 16k",
-      "64k_storage_disk": "Disco de Armazenamento 64k",
+      machine_casing: "Carcaça de Máquina",
+      "1k_storage_part": "Parte de Armazenamento 1K",
+      "4k_storage_part": "Parte de Armazenamento 4K",
+      "16k_storage_part": "Parte de Armazenamento 16K",
+      "64k_storage_part": "Parte de Armazenamento 64K",
+      "1k_storage_disk": "Disco de Armazenamento 1K",
+      "4k_storage_disk": "Disco de Armazenamento 4K",
+      "16k_storage_disk": "Disco de Armazenamento 16K",
+      "64k_storage_disk": "Disco de Armazenamento 64K",
       controller: "Controlador",
       disk_drive: "Drive de Disco",
+      cable: "Cabo",
       grid: "Grade",
       crafting_grid: "Grade de Crafting",
+      pattern_grid: "Grade de Padrões",
+      importer: "Importador",
+      exporter: "Exportador",
+      constructor: "Construtor",
+      destructor: "Destruidor",
+      interface: "Interface",
+      external_storage: "Armazenamento Externo",
+      wireless_transmitter: "Transmissor Wireless",
+      network_card: "Cartão de Rede",
+      wireless_grid: "Grade Wireless",
+      wireless_crafting_grid: "Grade de Crafting Wireless",
+      pattern: "Padrão",
+      autocrafter: "Autocrafter",
+      autocrafting_monitor: "Monitor de Autocrafting",
+      security_manager: "Gerenciador de Segurança",
+      security_card: "Cartão de Segurança",
+      wrench: "Chave Inglesa",
+      configuration_card: "Cartão de Configuração",
+      detector: "Detector",
+      relay: "Relay",
+      upgrade: "Upgrade",
+      range_upgrade: "Upgrade de Alcance",
+      speed_upgrade: "Upgrade de Velocidade",
+      stack_upgrade: "Upgrade de Pilha",
+      autocrafting_upgrade: "Upgrade de Autocrafting",
     },
 
     // Pack display
-    packs: "Packs",
-    pack: "Pack",
-    packSize: "Tamanho do Pack: 64 items",
+    packs: "pacotes",
+    pack: "pacote",
+    packSize: "Tamanho do pacote (64 items)",
 
     // Crafting Methods
     craftingMethods: {
       crafting_table: "Mesa de Trabalho",
       furnace: "Fornalha",
-      solderer: "Solderer",
-      none: "Material Base",
+      solderer: "Soldador",
+      none: "Nenhum",
     },
   },
 
@@ -220,7 +291,7 @@ export const translations: { [key: string]: Translation } = {
     appTitle: "Resource Calculator",
     appSubtitle: "Refined Storage",
     appDescription:
-      "Calculate all materials needed to craft items from the Refined Storage mod",
+      "Calculate all materials needed to craft Refined Storage mod items",
 
     // Item Selector
     selectItems: "Select Items",
@@ -232,38 +303,34 @@ export const translations: { [key: string]: Translation } = {
 
     // Results Display
     requiredMaterials: "Required Materials",
-    showDetails: "Show Details",
-    hideDetails: "Hide Details",
+    showDetails: "Show details",
+    hideDetails: "Hide details",
     baseMaterials: "Base Materials",
     intermediateMaterials: "Intermediate Materials",
     breakdownByItem: "Breakdown by Item",
     totalSummary: "Total Summary",
-    baseMaterialTypes: "Base Material Types:",
-    intermediateMaterialTypes: "Intermediate Material Types:",
-    totalBaseItems: "Total Base Items:",
-    totalIntermediateItems: "Total Intermediate Items:",
-    selectItemsToSee: "Select some items to see the required materials.",
-    displayMode: "Display Mode",
-    showAsPacks: "Show as Packs",
-    showAsQuantity: "Show as Quantity",
+    baseMaterialTypes: "Base material types",
+    intermediateMaterialTypes: "Intermediate material types",
+    totalBaseItems: "Total base items",
+    totalIntermediateItems: "Total intermediate items",
+    selectItemsToSee: "Select items to see required materials",
+    displayMode: "Display mode",
+    showAsPacks: "Show as packs",
+    showAsQuantity: "Show as quantity",
 
     // Crafting Tree
     craftingTree: "Crafting Tree",
-    clickToExpand: "Click on items with arrows to expand/collapse",
-    craftingOrder:
-      "This tree shows the crafting order: Base Materials → Intermediate → Final Item",
+    clickToExpand: "Click to expand",
+    craftingOrder: "Crafting Order",
 
     // How to Use
     howToUse: "How to Use",
-    step1Title: "Select Items",
-    step1Description:
-      "Use search or category filters to find the items you want to craft. Adjust quantities as needed.",
-    step2Title: "View Materials",
-    step2Description:
-      "The calculator shows all required base materials (iron, quartz, etc.) and intermediate materials you need to craft.",
-    step3Title: "Plan Your Farm",
-    step3Description:
-      "Use the detailed breakdown to understand exactly how materials are distributed among different items.",
+    step1Title: "1. Select Items",
+    step1Description: "Choose the Refined Storage items you want to craft",
+    step2Title: "2. Set Quantities",
+    step2Description: "Specify how many of each item you need to craft",
+    step3Title: "3. View Results",
+    step3Description: "See the complete breakdown of all required materials",
 
     // Categories
     categories: {
@@ -272,8 +339,14 @@ export const translations: { [key: string]: Translation } = {
       "Componentes": "Components",
       "Storage Parts": "Storage Parts",
       "Storage Disks": "Storage Disks",
-      "Blocos Principais": "Main Blocks",
+      "Blocos Principais": "Core Blocks",
       "Interface": "Interface",
+      "Input/Output": "Input/Output",
+      "Wireless": "Wireless",
+      "Autocrafting": "Autocrafting",
+      "Security": "Security",
+      "Utility": "Utility",
+      "Upgrades": "Upgrades",
     },
 
     // Materials
@@ -289,39 +362,70 @@ export const translations: { [key: string]: Translation } = {
       crafting_table: "Crafting Table",
       quartz_enriched_iron: "Quartz Enriched Iron",
       silicon: "Silicon",
+      string: "String",
+      slimeball: "Slimeball",
+      processor_binding: "Processor Binding",
       raw_basic_processor: "Raw Basic Processor",
       raw_improved_processor: "Raw Improved Processor",
       raw_advanced_processor: "Raw Advanced Processor",
       basic_processor: "Basic Processor",
       improved_processor: "Improved Processor",
       advanced_processor: "Advanced Processor",
+      construction_core: "Construction Core",
+      destruction_core: "Destruction Core",
       storage_housing: "Storage Housing",
       machine_casing: "Machine Casing",
-      "1k_storage_part": "1k Storage Part",
-      "4k_storage_part": "4k Storage Part",
-      "16k_storage_part": "16k Storage Part",
-      "64k_storage_part": "64k Storage Part",
-      "1k_storage_disk": "1k Storage Disk",
-      "4k_storage_disk": "4k Storage Disk",
-      "16k_storage_disk": "16k Storage Disk",
-      "64k_storage_disk": "64k Storage Disk",
+      "1k_storage_part": "1K Storage Part",
+      "4k_storage_part": "4K Storage Part",
+      "16k_storage_part": "16K Storage Part",
+      "64k_storage_part": "64K Storage Part",
+      "1k_storage_disk": "1K Storage Disk",
+      "4k_storage_disk": "4K Storage Disk",
+      "16k_storage_disk": "16K Storage Disk",
+      "64k_storage_disk": "64K Storage Disk",
       controller: "Controller",
       disk_drive: "Disk Drive",
+      cable: "Cable",
       grid: "Grid",
       crafting_grid: "Crafting Grid",
+      pattern_grid: "Pattern Grid",
+      importer: "Importer",
+      exporter: "Exporter",
+      constructor: "Constructor",
+      destructor: "Destructor",
+      interface: "Interface",
+      external_storage: "External Storage",
+      wireless_transmitter: "Wireless Transmitter",
+      network_card: "Network Card",
+      wireless_grid: "Wireless Grid",
+      wireless_crafting_grid: "Wireless Crafting Grid",
+      pattern: "Pattern",
+      autocrafter: "Autocrafter",
+      autocrafting_monitor: "Autocrafting Monitor",
+      security_manager: "Security Manager",
+      security_card: "Security Card",
+      wrench: "Wrench",
+      configuration_card: "Configuration Card",
+      detector: "Detector",
+      relay: "Relay",
+      upgrade: "Upgrade",
+      range_upgrade: "Range Upgrade",
+      speed_upgrade: "Speed Upgrade",
+      stack_upgrade: "Stack Upgrade",
+      autocrafting_upgrade: "Autocrafting Upgrade",
     },
 
     // Pack display
-    packs: "Packs",
-    pack: "Pack",
-    packSize: "Pack Size: 64 items",
+    packs: "packs",
+    pack: "pack",
+    packSize: "Pack size (64 items)",
 
     // Crafting Methods
     craftingMethods: {
       crafting_table: "Crafting Table",
       furnace: "Furnace",
       solderer: "Solderer",
-      none: "Base Material",
+      none: "None",
     },
   },
 };

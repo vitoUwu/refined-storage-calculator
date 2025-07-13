@@ -1,25 +1,40 @@
 import React from "react";
 import {
+  Activity,
+  ArrowDown,
+  ArrowUp,
+  ArrowUpDown,
   Box,
+  Cable,
   Circle,
   CircuitBoard,
+  Cog,
   Container,
   Cpu,
+  CreditCard,
   Database,
   Eye,
   Factory,
   Flame,
+  Gauge,
   Gem,
   Grid3X3,
   Hammer,
   HardDrive,
+  Layers,
   Monitor,
   MoreHorizontal,
   Mountain,
+  Network,
   Package,
   Pickaxe,
+  Radio,
+  Search,
   Settings,
+  Shield,
   Sparkles,
+  Wifi,
+  Wrench,
   Zap,
 } from "lucide-react";
 
@@ -38,32 +53,84 @@ export const materialIcons: { [key: string]: React.ReactNode } = {
   <Hammer className="w-5 h-5 text-vanilla-coldgrey-1" />,
   "silicon": <CircuitBoard className="w-5 h-5 text-vanilla-grey-5" />,
 
+  // Processor Binding
+  "processor_binding": <Cable className="w-5 h-5 text-dungeons-red-2" />,
+
+  // Raw Processors
   "raw_basic_processor": <Cpu className="w-5 h-5 text-vanilla-coldgrey-1" />,
   "raw_improved_processor": <Cpu className="w-5 h-5 text-dungeons-orange-2" />,
   "raw_advanced_processor": <Cpu className="w-5 h-5 text-vanilla-blue-2" />,
 
+  // Finished Processors
   "basic_processor": <Cpu className="w-5 h-5 text-vanilla-coldgrey-1" />,
   "improved_processor": <Cpu className="w-5 h-5 text-dungeons-orange-2" />,
   "advanced_processor": <Cpu className="w-5 h-5 text-vanilla-blue-2" />,
 
+  // Cores
+  "construction_core": <Factory className="w-5 h-5 text-dungeons-green-2" />,
+  "destruction_core": <Flame className="w-5 h-5 text-dungeons-red-2" />,
+
+  // Storage Components
   "storage_housing": <Container className="w-5 h-5 text-vanilla-coldgrey-1" />,
   "machine_casing": <Box className="w-5 h-5 text-vanilla-coldgrey-1" />,
 
-  "1k_storage_part": <Database className="w-5 h-5 text-vanilla-coldgrey-1" />,
-  "4k_storage_part": <Database className="w-5 h-5 text-vanilla-blue-2" />,
-  "16k_storage_part": <Database className="w-5 h-5 text-vanilla-blue-2" />,
-  "64k_storage_part": <Database className="w-5 h-5 text-vanilla-blue-2" />,
+  // Storage Parts
+  "1k_storage_part": <HardDrive className="w-5 h-5 text-vanilla-coldgrey-1" />,
+  "4k_storage_part": <HardDrive className="w-5 h-5 text-dungeons-orange-2" />,
+  "16k_storage_part": <HardDrive className="w-5 h-5 text-vanilla-blue-2" />,
+  "64k_storage_part": <HardDrive className="w-5 h-5 text-dungeons-purple-2" />,
 
-  "1k_storage_disk": <HardDrive className="w-5 h-5 text-vanilla-coldgrey-1" />,
-  "4k_storage_disk": <HardDrive className="w-5 h-5 text-vanilla-blue-2" />,
-  "16k_storage_disk": <HardDrive className="w-5 h-5 text-vanilla-blue-2" />,
-  "64k_storage_disk": <HardDrive className="w-5 h-5 text-vanilla-blue-2" />,
+  // Storage Disks
+  "1k_storage_disk": <Database className="w-5 h-5 text-vanilla-coldgrey-1" />,
+  "4k_storage_disk": <Database className="w-5 h-5 text-dungeons-orange-2" />,
+  "16k_storage_disk": <Database className="w-5 h-5 text-vanilla-blue-2" />,
+  "64k_storage_disk": <Database className="w-5 h-5 text-dungeons-purple-2" />,
 
+  // Main Network Components
   "controller": <Settings className="w-5 h-5 text-vanilla-blue-2" />,
-  "disk_drive": <Factory className="w-5 h-5 text-vanilla-coldgrey-1" />,
+  "disk_drive": <HardDrive className="w-5 h-5 text-vanilla-coldgrey-1" />,
+  "cable": <Cable className="w-5 h-5 text-vanilla-coldgrey-2" />,
 
-  "grid": <Monitor className="w-5 h-5 text-vanilla-blue-2" />,
-  "crafting_grid": <Grid3X3 className="w-5 h-5 text-vanilla-blue-2" />,
+  // Interface Components
+  "grid": <Monitor className="w-5 h-5 text-vanilla-coldgrey-1" />,
+  "crafting_grid": <Grid3X3 className="w-5 h-5 text-vanilla-coldgrey-1" />,
+  "pattern_grid": <Grid3X3 className="w-5 h-5 text-vanilla-blue-2" />,
+
+  // Input/Output Components
+  "importer": <ArrowDown className="w-5 h-5 text-dungeons-green-2" />,
+  "exporter": <ArrowUp className="w-5 h-5 text-dungeons-orange-2" />,
+  "constructor": <Factory className="w-5 h-5 text-dungeons-green-2" />,
+  "destructor": <Flame className="w-5 h-5 text-dungeons-red-2" />,
+  "interface": <ArrowUpDown className="w-5 h-5 text-vanilla-blue-2" />,
+  "external_storage": <Package className="w-5 h-5 text-vanilla-purple-2" />,
+
+  // Wireless Components
+  "wireless_transmitter": <Radio className="w-5 h-5 text-vanilla-blue-2" />,
+  "network_card": <CreditCard className="w-5 h-5 text-vanilla-coldgrey-1" />,
+  "wireless_grid": <Wifi className="w-5 h-5 text-vanilla-blue-2" />,
+  "wireless_crafting_grid": <Network className="w-5 h-5 text-vanilla-blue-2" />,
+
+  // Autocrafting Components
+  "pattern": <Circle className="w-5 h-5 text-vanilla-coldgrey-1" />,
+  "autocrafter": <Cog className="w-5 h-5 text-vanilla-blue-2" />,
+  "autocrafting_monitor": <Activity className="w-5 h-5 text-vanilla-blue-2" />,
+
+  // Security Components
+  "security_manager": <Shield className="w-5 h-5 text-dungeons-red-2" />,
+  "security_card": <CreditCard className="w-5 h-5 text-dungeons-red-2" />,
+
+  // Utility Components
+  "wrench": <Wrench className="w-5 h-5 text-vanilla-coldgrey-1" />,
+  "configuration_card": <CreditCard className="w-5 h-5 text-vanilla-blue-2" />,
+  "detector": <Search className="w-5 h-5 text-vanilla-orange-2" />,
+  "relay": <Radio className="w-5 h-5 text-vanilla-coldgrey-2" />,
+
+  // Upgrades
+  "upgrade": <Layers className="w-5 h-5 text-vanilla-coldgrey-1" />,
+  "range_upgrade": <Sparkles className="w-5 h-5 text-vanilla-blue-2" />,
+  "speed_upgrade": <Gauge className="w-5 h-5 text-dungeons-green-2" />,
+  "stack_upgrade": <Layers className="w-5 h-5 text-dungeons-orange-2" />,
+  "autocrafting_upgrade": <Cog className="w-5 h-5 text-vanilla-blue-2" />,
 };
 
 export const categoryIcons: { [key: string]: React.ReactNode } = {
