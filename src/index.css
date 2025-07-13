@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+@theme {
+  --font-monocraft: "Monocraft", "Courier New", monospace;
+  --font-monocraft-bold: "Monocraft Bold", "Courier New", monospace;
+}
+
+:root {
+  font-family: var(--font-monocraft);
+}
+
+body {
+  font-family: var(--font-monocraft);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  font-family: inherit;
+}
