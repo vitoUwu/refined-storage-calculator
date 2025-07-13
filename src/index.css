@@ -3,15 +3,126 @@
 
 @theme {
   --font-monocraft: "Monocraft", "Courier New", monospace;
+  --font-minecraft-seven: "MinecraftSeven-v2", "Courier New", monospace;
   --font-monocraft-bold: "Monocraft Bold", "Courier New", monospace;
+
+  --color-core-green-6: #2a641c;
+  --color-core-green-5: #3c8527;
+  --color-core-green-4: #52a535;
+  --color-core-green-3: #6cc349;
+  --color-core-green-2: #86d562;
+  --color-core-green-1: #a0e081;
+  --color-core-grey-6: #262423;
+  --color-core-grey-5: #3d3938;
+  --color-core-grey-4: #6b6562;
+  --color-core-grey-3: #aba09c;
+  --color-core-grey-2: #d0c5c0;
+  --color-core-grey-1: #ede5e2;
+  --color-vanilla-green-6: #2a641c;
+  --color-vanilla-green-5: #3c8527;
+  --color-vanilla-green-4: #52a535;
+  --color-vanilla-green-3: #6cc349;
+  --color-vanilla-green-2: #86d562;
+  --color-vanilla-green-1: #a0e081;
+  --color-vanilla-brown-6: #492d1f;
+  --color-vanilla-brown-5: #66412c;
+  --color-vanilla-brown-4: #805539;
+  --color-vanilla-brown-3: #976746;
+  --color-vanilla-brown-2: #ad7a54;
+  --color-vanilla-brown-1: #c28e64;
+  --color-vanilla-blue-6: #002fae;
+  --color-vanilla-blue-5: #0040c8;
+  --color-vanilla-blue-4: #0855db;
+  --color-vanilla-blue-3: #1e6eea;
+  --color-vanilla-blue-2: #3a87f4;
+  --color-vanilla-blue-1: #5b9ffb;
+  --color-vanilla-grey-6: #262423;
+  --color-vanilla-grey-5: #3d3938;
+  --color-vanilla-grey-4: #6b6562;
+  --color-vanilla-grey-3: #aba09c;
+  --color-vanilla-grey-2: #d0c5c0;
+  --color-vanilla-grey-1: #ede5e2;
+  --color-vanilla-coldgrey-6: #2c2f3a;
+  --color-vanilla-coldgrey-5: #3d4250;
+  --color-vanilla-coldgrey-4: #4d5466;
+  --color-vanilla-coldgrey-3: #5d647a;
+  --color-vanilla-coldgrey-2: #6c748c;
+  --color-vanilla-coldgrey-1: #8089a2;
+  --color-legends-light-blue-6: #339cd7;
+  --color-legends-light-blue-5: #39b9eb;
+  --color-legends-light-blue-4: #4ad5ff;
+  --color-legends-light-blue-3: #70dfff;
+  --color-legends-light-blue-2: #95e8ff;
+  --color-legends-light-blue-1: #acf2ff;
+  --color-legends-dark-blue-6: #001236;
+  --color-legends-dark-blue-5: #00215c;
+  --color-legends-dark-blue-4: #00337d;
+  --color-legends-dark-blue-3: #003bab;
+  --color-legends-dark-blue-2: #005dcf;
+  --color-legends-dark-blue-1: #007ff2;
+  --color-legends-light-orange-6: #de7523;
+  --color-legends-light-orange-5: #e89133;
+  --color-legends-light-orange-4: #f1ad42;
+  --color-legends-light-orange-3: #f6c25a;
+  --color-legends-light-orange-2: #fad36f;
+  --color-legends-light-orange-1: #fddf93;
+  --color-legends-ultra-dark-blue: #071927;
+  --color-legends-ultra-dark-orange: #271505;
+  --color-dungeons-orange-6: #de5b0d;
+  --color-dungeons-orange-5: #ff791a;
+  --color-dungeons-orange-4: #ffa41f;
+  --color-dungeons-orange-3: #ffc42b;
+  --color-dungeons-orange-2: #ffd953;
+  --color-dungeons-orange-1: #fff27a;
+  --color-dungeons-red-6: #8f1f0b;
+  --color-dungeons-red-5: #b42d10;
+  --color-dungeons-red-4: #da3a16;
+  --color-dungeons-red-3: #ff481b;
+  --color-dungeons-red-2: #ff6d3a;
+  --color-dungeons-red-1: #ff925b;
+  --color-dungeons-mulberry-6: #190d19;
+  --color-dungeons-mulberry-5: #32122a;
+  --color-dungeons-mulberry-4: #4f1030;
+  --color-dungeons-mulberry-3: #530f33;
+  --color-dungeons-mulberry-2: #6c0e37;
+  --color-dungeons-mulberry-1: #7b0d3a;
+  --color-realms-deep-blue-7: #050029;
+  --color-realms-deep-blue-6: #0c0248;
+  --color-realms-deep-blue-5: #210a80;
+  --color-realms-deep-blue-4: #401cac;
+  --color-realms-deep-blue-3: #643acb;
+  --color-realms-deep-blue-2: #8d68e0;
+  --color-realms-deep-blue-1: #bca4ec;
+  --color-realms-pink-6: #7f007a;
+  --color-realms-pink-5: #a40094;
+  --color-realms-pink-4: #d812b4;
+  --color-realms-pink-3: #e833c2;
+  --color-realms-pink-2: #f460d2;
+  --color-realms-pink-1: #fb95e2;
+  --color-marketplace-gold-6: #94540e;
+  --color-marketplace-gold-5: #b87918;
+  --color-marketplace-gold-4: #db9f21;
+  --color-marketplace-gold-3: #ffc42b;
+  --color-marketplace-gold-2: #ffd953;
+  --color-marketplace-gold-1: #fff27a;
+  --color-marketplace-grey-6: #262423;
+  --color-marketplace-grey-5: #3d3938;
+  --color-marketplace-grey-4: #6b6562;
+  --color-marketplace-grey-3: #aba09c;
+  --color-marketplace-grey-2: #d0c5c0;
+  --color-marketplace-grey-1: #ede5e2;
+
+  --select-down-arrow: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M11 14H10L9 14V12L8 12H7V10H6H5L5 8H6H7L17 8H18H19V10H18H17V12H16H15V14H14H13V16L11 16V14Z" fill="%23D0C5C0"/></svg>');
 }
 
 :root {
-  font-family: var(--font-monocraft);
+  /* font-family: var(--font-monocraft); */
+  font-family: var(--font-minecraft-seven);
 }
 
 body {
-  font-family: var(--font-monocraft);
+  /* font-family: var(--font-monocraft); */
+  font-family: var(--font-minecraft-seven);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

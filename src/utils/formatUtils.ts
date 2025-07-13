@@ -10,10 +10,10 @@ export function formatQuantityAsPacks(quantity: number): PackResult {
   const fullPacks = Math.floor(quantity / PACK_SIZE);
   const remainder = quantity % PACK_SIZE;
 
-  const packWord = 'Pack';
-  const packsWord = 'Packs';
+  const packWord = "Pack";
+  const packsWord = "Packs";
 
-  let formatted = '';
+  let formatted = "";
 
   if (fullPacks > 0) {
     if (fullPacks === 1) {
@@ -32,18 +32,22 @@ export function formatQuantityAsPacks(quantity: number): PackResult {
   return {
     fullPacks,
     remainder,
-    formatted
+    formatted,
   };
 }
 
 export function formatNumber(num: number, language: string): string {
-  const locale = language === 'pt-BR' ? 'pt-BR' : 'en-US';
+  const locale = language === "pt-BR" ? "pt-BR" : "en-US";
   return num.toLocaleString(locale);
 }
 
-export function formatQuantity(quantity: number, showAsPacks: boolean, language: string): string {
+export function formatQuantity(
+  quantity: number,
+  showAsPacks: boolean,
+  language: string,
+): string {
   if (showAsPacks && quantity >= PACK_SIZE) {
     return formatQuantityAsPacks(quantity).formatted;
   }
   return formatNumber(quantity, language);
-} 
+}

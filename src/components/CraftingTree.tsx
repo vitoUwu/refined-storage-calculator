@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { ChevronDown, ChevronRight, ArrowRight } from 'lucide-react';
-import { Recipe } from '../types';
-import { recipes, baseMaterials } from '../data/recipes';
-import { getMaterialIcon, getCraftingMethodIcon } from '../data/icons';
-import { useLanguage } from '../contexts/LanguageContext';
-import { formatQuantity } from '../utils/formatUtils';
+import { cn } from "@/utils/cn";
+import { ArrowRight, ChevronDown, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
+import { getCraftingMethodIcon, getMaterialIcon } from "../data/icons";
+import { baseMaterials, recipes } from "../data/recipes";
+import { Recipe } from "../types";
+import { formatQuantity } from "../utils/formatUtils";
+import { Button, ListItem, Modal, ModalContent } from "./ui";
 
 interface CraftingTreeProps {
   itemId: string;
@@ -22,14 +24,21 @@ interface TreeNode {
   level: number;
 }
 
-export function CraftingTree({ itemId, quantity = 1, onClose }: CraftingTreeProps) {
+export function CraftingTree(
+  { itemId, quantity = 1, onClose }: CraftingTreeProps,
+) {
   const { t, showAsPacks, language } = useLanguage();
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
 
-  const buildTree = (itemId: string, quantity: number, level: number = 0): TreeNode => {
-    const itemName = t.materials[itemId as keyof typeof t.materials] || itemId.replace(/_/g, ' ');
+  const buildTree = (
+    itemId: string,
+    quantity: number,
+    level: number = 0,
+  ): TreeNode => {
+    const itemName = t.materials[itemId as keyof typeof t.materials] ||
+      itemId.replace(/_/g, " ");
     const isBaseMaterial = baseMaterials.includes(itemId);
-    const recipe = recipes.find(r => r.output.item === itemId);
+    const recipe = recipes.find((r) => r.output.item === itemId);
 
     const node: TreeNode = {
       itemId,
@@ -38,15 +47,17 @@ export function CraftingTree({ itemId, quantity = 1, onClose }: CraftingTreeProp
       isBaseMaterial,
       recipe,
       children: [],
-      level
+      level,
     };
 
     if (recipe && !isBaseMaterial) {
       const recipesNeeded = Math.ceil(quantity / recipe.output.quantity);
 
-      recipe.ingredients.forEach(ingredient => {
+      recipe.ingredients.forEach((ingredient) => {
         const neededQuantity = ingredient.quantity * recipesNeeded;
-        node.children.push(buildTree(ingredient.item, neededQuantity, level + 1));
+        node.children.push(
+          buildTree(ingredient.item, neededQuantity, level + 1),
+        );
       });
     }
 
@@ -65,146 +76,180 @@ export function CraftingTree({ itemId, quantity = 1, onClose }: CraftingTreeProp
     setExpandedNodes(newExpanded);
   };
 
-  const renderNode = (node: TreeNode, parentPath: string = '') => {
+  const renderNode = (node: TreeNode, parentPath: string = "") => {
     const nodePath = `${parentPath}-${node.itemId}-${node.level}`;
     const isExpanded = expandedNodes.has(nodePath);
     const hasChildren = node.children.length > 0;
 
     return (
-      <div key={nodePath} className="mb-2">
-        <div
-          className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 ${node.isBaseMaterial
-            ? 'bg-green-900/30 border border-green-500/30'
-            : 'bg-gray-800 border border-gray-600'
-            } ${hasChildren ? 'cursor-pointer hover:bg-gray-700' : ''}`}
-          onClick={hasChildren ? () => toggleExpanded(nodePath) : undefined}
-          style={{ marginLeft: `${node.level * 20}px` }}
+      <ul
+        key={nodePath}
+        className="mb-2"
+        style={{ marginLeft: `${node.level * 20}px` }}
+      >
+        <ListItem
+          className={cn(
+            "transition-all duration-200 h-auto justify-between flex",
+            hasChildren ? "cursor-pointer hover:brightness-110" : "",
+          )}
         >
-          {/* Indicador de Expansão */}
-          <div className="w-5 h-5 flex items-center justify-center">
-            {hasChildren ? (
-              isExpanded ? (
-                <ChevronDown className="w-4 h-4 text-gray-400" />
-              ) : (
-                <ChevronRight className="w-4 h-4 text-gray-400" />
-              )
-            ) : (
-              <ArrowRight className="w-4 h-4 text-transparent" />
-            )}
-          </div>
-
-          {/* Ícone do Material */}
-          <div className="flex-shrink-0">
-            {getMaterialIcon(node.itemId)}
-          </div>
-
-          {/* Nome e Quantidade */}
-          <div className="flex-1">
-            <div className="flex items-center justify-between">
-              <span className={`font-medium ${node.isBaseMaterial ? 'text-green-300' : 'text-white'}`}>
-                {node.itemName}
-              </span>
-              <span className={`font-bold ${node.isBaseMaterial ? 'text-green-400' : 'text-blue-400'}`}>
-                {node.quantity}x
-              </span>
+          <div
+            className="flex items-center space-x-3 p-3 w-full"
+            onClick={hasChildren ? () => toggleExpanded(nodePath) : undefined}
+          >
+            <div className="w-5 h-5 flex items-center justify-center">
+              {hasChildren
+                ? (
+                  isExpanded
+                    ? <ChevronDown className="w-4 h-4 text-vanilla-grey-2" />
+                    : <ChevronRight className="w-4 h-4 text-vanilla-grey-2" />
+                )
+                : <ArrowRight className="w-4 h-4 text-transparent" />}
             </div>
 
-            {/* Informações da Receita */}
-            {node.recipe && (
-              <div className="flex items-center space-x-2 text-xs text-gray-400 mt-1">
-                <span>
-                  {node.isBaseMaterial ? 'Material Base' : `Receita: ${node.recipe.category}`}
-                </span>
-                <span>•</span>
-                <div className="flex items-center space-x-1">
-                  {getCraftingMethodIcon(node.recipe.craftingMethod)}
-                  <span>{t.craftingMethods[node.recipe.craftingMethod as keyof typeof t.craftingMethods]}</span>
-                </div>
-              </div>
-            )}
-          </div>
+            <div className="flex-shrink-0">
+              {getMaterialIcon(node.itemId)}
+            </div>
 
-          {/* Indicador de Tipo */}
-          <div className={`w-2 h-2 rounded-full ${node.isBaseMaterial ? 'bg-green-400' : 'bg-yellow-400'
-            }`} />
-        </div>
+            <div className="flex-1">
+              <span
+                className={cn(
+                  "font-medium leading-none",
+                  node.isBaseMaterial ? "text-vanilla-green-3" : "text-white",
+                )}
+              >
+                {node.itemName}
+              </span>
+
+              {/* Informações da Receita */}
+              {node.recipe && (
+                <div className="flex items-center space-x-2 text-xs text-vanilla-grey-2 mt-1">
+                  <span>
+                    {node.isBaseMaterial
+                      ? "Material Base"
+                      : `Receita: ${node.recipe.category}`}
+                  </span>
+                  <span>•</span>
+                  <div className="flex items-center space-x-1">
+                    {getCraftingMethodIcon(node.recipe.craftingMethod)}
+                    <span>
+                      {t.craftingMethods[
+                        node.recipe
+                          .craftingMethod as keyof typeof t.craftingMethods
+                      ]}
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span
+                className={cn(
+                  "font-medium leading-none",
+                )}
+              >
+                {node.quantity}x
+              </span>
+              <Button
+                variant={node.isBaseMaterial ? "success" : "realms"}
+                className="size-8 p-0"
+              >
+                <div className="size-1.5 rounded-full bg-white" />
+              </Button>
+            </div>
+          </div>
+        </ListItem>
 
         {/* Filhos */}
         {hasChildren && isExpanded && (
-          <div className="ml-4 mt-2 border-l border-gray-600 pl-2">
-            {node.children.map(child => renderNode(child, nodePath))}
-          </div>
+          <li
+            className="ml-4 mt-2 border-l-2 border-core-grey-3 pl-2 list-none"
+            style={{ marginLeft: `${(node.level + 1) * 20}px` }}
+          >
+            {node.children.map((child) => renderNode(child, nodePath))}
+          </li>
         )}
-      </div>
+      </ul>
     );
   };
 
   useEffect(() => {
     const firstLevelNodes = new Set<string>();
-    const addFirstLevel = (node: TreeNode, path: string = '') => {
+    const addFirstLevel = (node: TreeNode, path: string = "") => {
       const nodePath = `${path}-${node.itemId}-${node.level}`;
       if (node.level <= 1) {
         firstLevelNodes.add(nodePath);
       }
-      node.children.forEach(child => addFirstLevel(child, nodePath));
+      node.children.forEach((child) => addFirstLevel(child, nodePath));
     };
     addFirstLevel(tree);
     setExpandedNodes(firstLevelNodes);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemId]);
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-700">
+    <Modal
+      isOpen={true}
+      onClose={onClose}
+      size="xl"
+      title={t.craftingTree}
+    >
+      <ModalContent className="p-0">
+        {/* Header com info do item */}
+        <div className="p-4">
           <div className="flex items-center space-x-3">
             {getMaterialIcon(itemId)}
             <div>
-              <h2 className="text-2xl font-bold text-white">
-                {t.craftingTree}
-              </h2>
-              <p className="text-gray-400">
-                {t.materials[itemId as keyof typeof t.materials] || itemId} ({formatQuantity(quantity, showAsPacks, language)})
+              <h3 className="text-lg font-medium text-white">
+                {t.materials[itemId as keyof typeof t.materials] || itemId}
+              </h3>
+              <p className="text-vanilla-grey-2">
+                {formatQuantity(quantity, showAsPacks, language)}
               </p>
             </div>
           </div>
-          <button
-            onClick={onClose}
-            className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition-colors"
-          >
-            ✕
-          </button>
         </div>
 
         {/* Legenda */}
-        <div className="p-4 bg-gray-800 border-b border-gray-700">
-          <div className="flex items-center space-x-6 text-sm">
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-              <span className="text-gray-300">{t.baseMaterials}</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-              <span className="text-gray-300">{t.intermediateMaterials}</span>
-            </div>
-            <div className="text-gray-400">
-              {t.clickToExpand}
+        <ListItem className="p-1 m-4 w-auto h-auto">
+          <div className="p-3">
+            <div className="flex items-center space-x-6 text-sm">
+              <div className="flex items-center space-x-2">
+                <Button variant="success" size="sm" className="size-8 p-0">
+                  ●
+                </Button>
+                <span className="text-vanilla-grey-2">{t.baseMaterials}</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Button variant="realms" size="sm" className="size-8 p-0">
+                  ●
+                </Button>
+                <span className="text-vanilla-grey-2">
+                  {t.intermediateMaterials}
+                </span>
+              </div>
+              <div className="text-vanilla-grey-2">
+                {t.clickToExpand}
+              </div>
             </div>
           </div>
-        </div>
+        </ListItem>
 
         {/* Árvore */}
-        <div className="p-6 overflow-y-auto max-h-[60vh]">
+        <div className="p-4 overflow-y-auto max-h-[60vh]">
           {renderNode(tree)}
         </div>
 
         {/* Footer */}
-        <div className="p-4 bg-gray-800 border-t border-gray-700 text-center">
-          <p className="text-gray-400 text-sm">
-            {t.craftingOrder}
-          </p>
-        </div>
-      </div>
-    </div>
+        <ListItem className="m-4 mt-0 w-auto h-auto">
+          <div className="p-3 text-center">
+            <p className="text-sm">
+              {t.craftingOrder}
+            </p>
+          </div>
+        </ListItem>
+      </ModalContent>
+    </Modal>
   );
-} 
+}

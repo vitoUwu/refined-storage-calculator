@@ -7,7 +7,7 @@ export interface Recipe {
     item: string;
     quantity: number;
   };
-  craftingMethod: 'crafting_table' | 'furnace' | 'solderer' | 'none';
+  craftingMethod: "crafting_table" | "furnace" | "solderer" | "none";
 }
 
 export interface Ingredient {
@@ -31,4 +31,4 @@ export interface CalculationResult {
 
 export interface CraftingSelection {
   [itemId: string]: number;
-} 
+}

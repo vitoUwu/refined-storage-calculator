@@ -1,282 +1,282 @@
-import { Recipe } from '../types';
+import { Recipe } from "../types";
 
 export const recipes: Recipe[] = [
   {
-    id: 'quartz_enriched_iron',
-    name: 'Quartz Enriched Iron',
-    category: 'Materiais Base',
+    id: "quartz_enriched_iron",
+    name: "Quartz Enriched Iron",
+    category: "Materiais Base",
     ingredients: [
-      { item: 'iron_ingot', quantity: 1 },
-      { item: 'nether_quartz', quantity: 1 }
+      { item: "iron_ingot", quantity: 1 },
+      { item: "nether_quartz", quantity: 1 },
     ],
-    output: { item: 'quartz_enriched_iron', quantity: 1 },
-    craftingMethod: 'furnace'
+    output: { item: "quartz_enriched_iron", quantity: 1 },
+    craftingMethod: "furnace",
   },
   {
-    id: 'silicon',
-    name: 'Silicon',
-    category: 'Materiais Base',
+    id: "silicon",
+    name: "Silicon",
+    category: "Materiais Base",
     ingredients: [
-      { item: 'nether_quartz', quantity: 1 }
+      { item: "nether_quartz", quantity: 1 },
     ],
-    output: { item: 'silicon', quantity: 1 },
-    craftingMethod: 'furnace'
-  },
-
-  {
-    id: 'raw_basic_processor',
-    name: 'Raw Basic Processor',
-    category: 'Processadores',
-    ingredients: [
-      { item: 'iron_ingot', quantity: 1 },
-      { item: 'redstone', quantity: 1 }
-    ],
-    output: { item: 'raw_basic_processor', quantity: 1 },
-    craftingMethod: 'crafting_table'
-  },
-  {
-    id: 'raw_improved_processor',
-    name: 'Raw Improved Processor',
-    category: 'Processadores',
-    ingredients: [
-      { item: 'gold_ingot', quantity: 1 },
-      { item: 'redstone', quantity: 1 }
-    ],
-    output: { item: 'raw_improved_processor', quantity: 1 },
-    craftingMethod: 'crafting_table'
-  },
-  {
-    id: 'raw_advanced_processor',
-    name: 'Raw Advanced Processor',
-    category: 'Processadores',
-    ingredients: [
-      { item: 'diamond', quantity: 1 },
-      { item: 'redstone', quantity: 1 }
-    ],
-    output: { item: 'raw_advanced_processor', quantity: 1 },
-    craftingMethod: 'crafting_table'
+    output: { item: "silicon", quantity: 1 },
+    craftingMethod: "furnace",
   },
 
   {
-    id: 'basic_processor',
-    name: 'Basic Processor',
-    category: 'Processadores',
+    id: "raw_basic_processor",
+    name: "Raw Basic Processor",
+    category: "Processadores",
     ingredients: [
-      { item: 'raw_basic_processor', quantity: 1 },
-      { item: 'silicon', quantity: 1 },
-      { item: 'redstone', quantity: 1 }
+      { item: "iron_ingot", quantity: 1 },
+      { item: "redstone", quantity: 1 },
     ],
-    output: { item: 'basic_processor', quantity: 1 },
-    craftingMethod: 'solderer'
+    output: { item: "raw_basic_processor", quantity: 1 },
+    craftingMethod: "crafting_table",
   },
   {
-    id: 'improved_processor',
-    name: 'Improved Processor',
-    category: 'Processadores',
+    id: "raw_improved_processor",
+    name: "Raw Improved Processor",
+    category: "Processadores",
     ingredients: [
-      { item: 'raw_improved_processor', quantity: 1 },
-      { item: 'silicon', quantity: 1 },
-      { item: 'redstone', quantity: 1 }
+      { item: "gold_ingot", quantity: 1 },
+      { item: "redstone", quantity: 1 },
     ],
-    output: { item: 'improved_processor', quantity: 1 },
-    craftingMethod: 'solderer'
+    output: { item: "raw_improved_processor", quantity: 1 },
+    craftingMethod: "crafting_table",
   },
   {
-    id: 'advanced_processor',
-    name: 'Advanced Processor',
-    category: 'Processadores',
+    id: "raw_advanced_processor",
+    name: "Raw Advanced Processor",
+    category: "Processadores",
     ingredients: [
-      { item: 'raw_advanced_processor', quantity: 1 },
-      { item: 'silicon', quantity: 1 },
-      { item: 'redstone', quantity: 1 }
+      { item: "diamond", quantity: 1 },
+      { item: "redstone", quantity: 1 },
     ],
-    output: { item: 'advanced_processor', quantity: 1 },
-    craftingMethod: 'solderer'
+    output: { item: "raw_advanced_processor", quantity: 1 },
+    craftingMethod: "crafting_table",
   },
 
   {
-    id: 'storage_housing',
-    name: 'Storage Housing',
-    category: 'Componentes',
+    id: "basic_processor",
+    name: "Basic Processor",
+    category: "Processadores",
     ingredients: [
-      { item: 'quartz_enriched_iron', quantity: 8 },
-      { item: 'redstone', quantity: 1 }
+      { item: "raw_basic_processor", quantity: 1 },
+      { item: "silicon", quantity: 1 },
+      { item: "redstone", quantity: 1 },
     ],
-    output: { item: 'storage_housing', quantity: 1 },
-    craftingMethod: 'crafting_table'
+    output: { item: "basic_processor", quantity: 1 },
+    craftingMethod: "solderer",
+  },
+  {
+    id: "improved_processor",
+    name: "Improved Processor",
+    category: "Processadores",
+    ingredients: [
+      { item: "raw_improved_processor", quantity: 1 },
+      { item: "silicon", quantity: 1 },
+      { item: "redstone", quantity: 1 },
+    ],
+    output: { item: "improved_processor", quantity: 1 },
+    craftingMethod: "solderer",
+  },
+  {
+    id: "advanced_processor",
+    name: "Advanced Processor",
+    category: "Processadores",
+    ingredients: [
+      { item: "raw_advanced_processor", quantity: 1 },
+      { item: "silicon", quantity: 1 },
+      { item: "redstone", quantity: 1 },
+    ],
+    output: { item: "advanced_processor", quantity: 1 },
+    craftingMethod: "solderer",
   },
 
   {
-    id: '1k_storage_part',
-    name: '1k Storage Part',
-    category: 'Storage Parts',
+    id: "storage_housing",
+    name: "Storage Housing",
+    category: "Componentes",
     ingredients: [
-      { item: 'quartz_enriched_iron', quantity: 4 },
-      { item: 'redstone', quantity: 4 },
-      { item: 'basic_processor', quantity: 1 }
+      { item: "quartz_enriched_iron", quantity: 8 },
+      { item: "redstone", quantity: 1 },
     ],
-    output: { item: '1k_storage_part', quantity: 1 },
-    craftingMethod: 'crafting_table'
-  },
-  {
-    id: '4k_storage_part',
-    name: '4k Storage Part',
-    category: 'Storage Parts',
-    ingredients: [
-      { item: '1k_storage_part', quantity: 3 },
-      { item: 'quartz_enriched_iron', quantity: 4 },
-      { item: 'redstone', quantity: 4 },
-      { item: 'basic_processor', quantity: 1 }
-    ],
-    output: { item: '4k_storage_part', quantity: 1 },
-    craftingMethod: 'crafting_table'
-  },
-  {
-    id: '16k_storage_part',
-    name: '16k Storage Part',
-    category: 'Storage Parts',
-    ingredients: [
-      { item: '4k_storage_part', quantity: 3 },
-      { item: 'quartz_enriched_iron', quantity: 4 },
-      { item: 'redstone', quantity: 4 },
-      { item: 'improved_processor', quantity: 1 }
-    ],
-    output: { item: '16k_storage_part', quantity: 1 },
-    craftingMethod: 'crafting_table'
-  },
-  {
-    id: '64k_storage_part',
-    name: '64k Storage Part',
-    category: 'Storage Parts',
-    ingredients: [
-      { item: '16k_storage_part', quantity: 3 },
-      { item: 'quartz_enriched_iron', quantity: 4 },
-      { item: 'redstone', quantity: 4 },
-      { item: 'advanced_processor', quantity: 1 }
-    ],
-    output: { item: '64k_storage_part', quantity: 1 },
-    craftingMethod: 'crafting_table'
+    output: { item: "storage_housing", quantity: 1 },
+    craftingMethod: "crafting_table",
   },
 
   {
-    id: '1k_storage_disk',
-    name: '1k Storage Disk',
-    category: 'Storage Disks',
+    id: "1k_storage_part",
+    name: "1k Storage Part",
+    category: "Storage Parts",
     ingredients: [
-      { item: '1k_storage_part', quantity: 1 },
-      { item: 'storage_housing', quantity: 1 }
+      { item: "quartz_enriched_iron", quantity: 4 },
+      { item: "redstone", quantity: 4 },
+      { item: "basic_processor", quantity: 1 },
     ],
-    output: { item: '1k_storage_disk', quantity: 1 },
-    craftingMethod: 'crafting_table'
+    output: { item: "1k_storage_part", quantity: 1 },
+    craftingMethod: "crafting_table",
   },
   {
-    id: '4k_storage_disk',
-    name: '4k Storage Disk',
-    category: 'Storage Disks',
+    id: "4k_storage_part",
+    name: "4k Storage Part",
+    category: "Storage Parts",
     ingredients: [
-      { item: '4k_storage_part', quantity: 1 },
-      { item: 'storage_housing', quantity: 1 }
+      { item: "1k_storage_part", quantity: 3 },
+      { item: "quartz_enriched_iron", quantity: 4 },
+      { item: "redstone", quantity: 4 },
+      { item: "basic_processor", quantity: 1 },
     ],
-    output: { item: '4k_storage_disk', quantity: 1 },
-    craftingMethod: 'crafting_table'
+    output: { item: "4k_storage_part", quantity: 1 },
+    craftingMethod: "crafting_table",
   },
   {
-    id: '16k_storage_disk',
-    name: '16k Storage Disk',
-    category: 'Storage Disks',
+    id: "16k_storage_part",
+    name: "16k Storage Part",
+    category: "Storage Parts",
     ingredients: [
-      { item: '16k_storage_part', quantity: 1 },
-      { item: 'storage_housing', quantity: 1 }
+      { item: "4k_storage_part", quantity: 3 },
+      { item: "quartz_enriched_iron", quantity: 4 },
+      { item: "redstone", quantity: 4 },
+      { item: "improved_processor", quantity: 1 },
     ],
-    output: { item: '16k_storage_disk', quantity: 1 },
-    craftingMethod: 'crafting_table'
+    output: { item: "16k_storage_part", quantity: 1 },
+    craftingMethod: "crafting_table",
   },
   {
-    id: '64k_storage_disk',
-    name: '64k Storage Disk',
-    category: 'Storage Disks',
+    id: "64k_storage_part",
+    name: "64k Storage Part",
+    category: "Storage Parts",
     ingredients: [
-      { item: '64k_storage_part', quantity: 1 },
-      { item: 'storage_housing', quantity: 1 }
+      { item: "16k_storage_part", quantity: 3 },
+      { item: "quartz_enriched_iron", quantity: 4 },
+      { item: "redstone", quantity: 4 },
+      { item: "advanced_processor", quantity: 1 },
     ],
-    output: { item: '64k_storage_disk', quantity: 1 },
-    craftingMethod: 'crafting_table'
-  },
-
-  {
-    id: 'machine_casing',
-    name: 'Machine Casing',
-    category: 'Componentes',
-    ingredients: [
-      { item: 'quartz_enriched_iron', quantity: 8 }
-    ],
-    output: { item: 'machine_casing', quantity: 1 },
-    craftingMethod: 'crafting_table'
+    output: { item: "64k_storage_part", quantity: 1 },
+    craftingMethod: "crafting_table",
   },
 
   {
-    id: 'controller',
-    name: 'Controller',
-    category: 'Blocos Principais',
+    id: "1k_storage_disk",
+    name: "1k Storage Disk",
+    category: "Storage Disks",
     ingredients: [
-      { item: 'machine_casing', quantity: 1 },
-      { item: 'advanced_processor', quantity: 1 },
-      { item: 'ender_pearl', quantity: 2 }
+      { item: "1k_storage_part", quantity: 1 },
+      { item: "storage_housing", quantity: 1 },
     ],
-    output: { item: 'controller', quantity: 1 },
-    craftingMethod: 'crafting_table'
+    output: { item: "1k_storage_disk", quantity: 1 },
+    craftingMethod: "crafting_table",
+  },
+  {
+    id: "4k_storage_disk",
+    name: "4k Storage Disk",
+    category: "Storage Disks",
+    ingredients: [
+      { item: "4k_storage_part", quantity: 1 },
+      { item: "storage_housing", quantity: 1 },
+    ],
+    output: { item: "4k_storage_disk", quantity: 1 },
+    craftingMethod: "crafting_table",
+  },
+  {
+    id: "16k_storage_disk",
+    name: "16k Storage Disk",
+    category: "Storage Disks",
+    ingredients: [
+      { item: "16k_storage_part", quantity: 1 },
+      { item: "storage_housing", quantity: 1 },
+    ],
+    output: { item: "16k_storage_disk", quantity: 1 },
+    craftingMethod: "crafting_table",
+  },
+  {
+    id: "64k_storage_disk",
+    name: "64k Storage Disk",
+    category: "Storage Disks",
+    ingredients: [
+      { item: "64k_storage_part", quantity: 1 },
+      { item: "storage_housing", quantity: 1 },
+    ],
+    output: { item: "64k_storage_disk", quantity: 1 },
+    craftingMethod: "crafting_table",
   },
 
   {
-    id: 'disk_drive',
-    name: 'Disk Drive',
-    category: 'Blocos Principais',
+    id: "machine_casing",
+    name: "Machine Casing",
+    category: "Componentes",
     ingredients: [
-      { item: 'machine_casing', quantity: 1 },
-      { item: 'improved_processor', quantity: 1 },
-      { item: 'chest', quantity: 1 }
+      { item: "quartz_enriched_iron", quantity: 8 },
     ],
-    output: { item: 'disk_drive', quantity: 1 },
-    craftingMethod: 'crafting_table'
+    output: { item: "machine_casing", quantity: 1 },
+    craftingMethod: "crafting_table",
   },
 
   {
-    id: 'grid',
-    name: 'Grid',
-    category: 'Interface',
+    id: "controller",
+    name: "Controller",
+    category: "Blocos Principais",
     ingredients: [
-      { item: 'machine_casing', quantity: 1 },
-      { item: 'basic_processor', quantity: 1 },
-      { item: 'glass', quantity: 1 }
+      { item: "machine_casing", quantity: 1 },
+      { item: "advanced_processor", quantity: 1 },
+      { item: "ender_pearl", quantity: 2 },
     ],
-    output: { item: 'grid', quantity: 1 },
-    craftingMethod: 'crafting_table'
+    output: { item: "controller", quantity: 1 },
+    craftingMethod: "crafting_table",
   },
 
   {
-    id: 'crafting_grid',
-    name: 'Crafting Grid',
-    category: 'Interface',
+    id: "disk_drive",
+    name: "Disk Drive",
+    category: "Blocos Principais",
     ingredients: [
-      { item: 'grid', quantity: 1 },
-      { item: 'crafting_table', quantity: 1 },
-      { item: 'improved_processor', quantity: 1 }
+      { item: "machine_casing", quantity: 1 },
+      { item: "improved_processor", quantity: 1 },
+      { item: "chest", quantity: 1 },
     ],
-    output: { item: 'crafting_grid', quantity: 1 },
-    craftingMethod: 'crafting_table'
-  }
+    output: { item: "disk_drive", quantity: 1 },
+    craftingMethod: "crafting_table",
+  },
+
+  {
+    id: "grid",
+    name: "Grid",
+    category: "Interface",
+    ingredients: [
+      { item: "machine_casing", quantity: 1 },
+      { item: "basic_processor", quantity: 1 },
+      { item: "glass", quantity: 1 },
+    ],
+    output: { item: "grid", quantity: 1 },
+    craftingMethod: "crafting_table",
+  },
+
+  {
+    id: "crafting_grid",
+    name: "Crafting Grid",
+    category: "Interface",
+    ingredients: [
+      { item: "grid", quantity: 1 },
+      { item: "crafting_table", quantity: 1 },
+      { item: "improved_processor", quantity: 1 },
+    ],
+    output: { item: "crafting_grid", quantity: 1 },
+    craftingMethod: "crafting_table",
+  },
 ];
 
 export const baseMaterials = [
-  'iron_ingot',
-  'gold_ingot',
-  'diamond',
-  'nether_quartz',
-  'redstone',
-  'ender_pearl',
-  'chest',
-  'glass',
-  'crafting_table'
+  "iron_ingot",
+  "gold_ingot",
+  "diamond",
+  "nether_quartz",
+  "redstone",
+  "ender_pearl",
+  "chest",
+  "glass",
+  "crafting_table",
 ];
 
-export const materialNames: { [key: string]: string } = {}; 
+export const materialNames: { [key: string]: string } = {};

@@ -1,19 +1,24 @@
-import { Recipe, MaterialCost, CalculationResult, CraftingSelection } from '../types';
-import { recipes, baseMaterials } from '../data/recipes';
+import {
+  CalculationResult,
+  CraftingSelection,
+  MaterialCost,
+  Recipe,
+} from "../types";
+import { baseMaterials, recipes } from "../data/recipes";
 
 export class RefinedStorageCalculator {
   private recipeMap: Map<string, Recipe>;
 
   constructor() {
     this.recipeMap = new Map();
-    recipes.forEach(recipe => {
+    recipes.forEach((recipe) => {
       this.recipeMap.set(recipe.output.item, recipe);
     });
   }
 
   calculate(selection: CraftingSelection): CalculationResult {
     const totalMaterials: MaterialCost = {};
-    const breakdown: CalculationResult['breakdown'] = {};
+    const breakdown: CalculationResult["breakdown"] = {};
 
     for (const [itemId, quantity] of Object.entries(selection)) {
       if (quantity > 0) {
@@ -21,7 +26,7 @@ export class RefinedStorageCalculator {
 
         breakdown[itemId] = {
           quantity,
-          materials: itemMaterials
+          materials: itemMaterials,
         };
 
         this.addMaterials(totalMaterials, itemMaterials);
@@ -30,14 +35,17 @@ export class RefinedStorageCalculator {
 
     return {
       totalMaterials,
-      breakdown
+      breakdown,
     };
   }
 
   /**
    * Calculates recursively all materials needed for a specific item
    */
-  private calculateItemMaterials(itemId: string, quantity: number): MaterialCost {
+  private calculateItemMaterials(
+    itemId: string,
+    quantity: number,
+  ): MaterialCost {
     const materials: MaterialCost = {};
 
     if (baseMaterials.includes(itemId)) {
@@ -56,7 +64,10 @@ export class RefinedStorageCalculator {
     for (const ingredient of recipe.ingredients) {
       const neededQuantity = ingredient.quantity * recipesNeeded;
 
-      const ingredientMaterials = this.calculateItemMaterials(ingredient.item, neededQuantity);
+      const ingredientMaterials = this.calculateItemMaterials(
+        ingredient.item,
+        neededQuantity,
+      );
 
       this.addMaterials(materials, ingredientMaterials);
     }
@@ -79,7 +90,7 @@ export class RefinedStorageCalculator {
   getRecipesByCategory(): { [category: string]: Recipe[] } {
     const categories: { [category: string]: Recipe[] } = {};
 
-    recipes.forEach(recipe => {
+    recipes.forEach((recipe) => {
       if (!categories[recipe.category]) {
         categories[recipe.category] = [];
       }
@@ -94,9 +105,9 @@ export class RefinedStorageCalculator {
    */
   searchRecipes(query: string): Recipe[] {
     const lowerQuery = query.toLowerCase();
-    return recipes.filter(recipe =>
+    return recipes.filter((recipe) =>
       recipe.name.toLowerCase().includes(lowerQuery) ||
       recipe.category.toLowerCase().includes(lowerQuery)
     );
   }
-} 
+}

@@ -1,0 +1,126 @@
+import { ItemSelector } from "@/components/ItemSelector";
+import { ResultsDisplay } from "@/components/ResultsDisplay";
+import { Button, Card, CardContent } from "@/components/ui";
+import { Select } from "@/components/ui/Select";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { CalculationResult, CraftingSelection } from "@/types";
+import { RefinedStorageCalculator } from "@/utils/calculator";
+import { Globe } from "lucide-react";
+import { useMemo, useState } from "react";
+
+export default function Index() {
+  const { t, language, setLanguage } = useLanguage();
+  const [selection, setSelection] = useState<CraftingSelection>({});
+
+  const calculator = useMemo(() => new RefinedStorageCalculator(), []);
+
+  const results: CalculationResult | null = useMemo(() => {
+    if (Object.keys(selection).length === 0) {
+      return null;
+    }
+    return calculator.calculate(selection);
+  }, [selection, calculator]);
+
+  return (
+    <div className="min-h-screen">
+      {/* Header */}
+      <header className="bg-[#262423e6] shadow-[0_4px_0_0_rgba(0,0,0,.25)]">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div className="text-center flex-1">
+              <h1 className="text-4xl font-medium text-white mb-2">
+                {t.appTitle}
+              </h1>
+              <p className="text-xl text-blue-400 font-medium">
+                {t.appSubtitle}
+              </p>
+              <p className="text-gray-400 mt-2">
+                {t.appDescription}
+              </p>
+            </div>
+
+            {/* Language Selector */}
+            <div className="flex items-center space-x-2">
+              <Globe className="w-5 h-5 text-gray-400" />
+              <Select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                className="w-40"
+              >
+                <option value="pt-BR">Português</option>
+                <option value="en">English</option>
+              </Select>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Seleção de Items */}
+          <div>
+            <ItemSelector
+              calculator={calculator}
+              selection={selection}
+              onSelectionChange={setSelection}
+            />
+          </div>
+
+          {/* Resultados */}
+          <div>
+            <ResultsDisplay results={results} />
+          </div>
+        </div>
+
+        {/* Informações Adicionais */}
+        <Card className="mt-12">
+          <CardContent>
+            <h2 className="text-2xl font-medium text-white mb-6">
+              {t.howToUse}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-300">
+              <div className="space-y-2">
+                <Button className="w-8 h-8 text-center mb-2">
+                  1
+                </Button>
+                <h3 className="font-medium text-white">{t.step1Title}</h3>
+                <p className="text-sm">
+                  {t.step1Description}
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <Button variant="success" className="w-8 h-8 text-center mb-2">
+                  2
+                </Button>
+                <h3 className="font-medium text-white">{t.step2Title}</h3>
+                <p className="text-sm">
+                  {t.step2Description}
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <Button variant="realms" className="w-8 h-8 text-center mb-2">
+                  3
+                </Button>
+                <h3 className="font-medium text-white">{t.step3Title}</h3>
+                <p className="text-sm">
+                  {t.step3Description}
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Footer */}
+        <footer className="mt-12 text-center text-gray-500 text-sm">
+          <p>
+            Calculadora de Recursos para Refined Storage • Todas as receitas
+            baseadas na versão mais recente do mod
+          </p>
+        </footer>
+      </main>
+    </div>
+  );
+}
