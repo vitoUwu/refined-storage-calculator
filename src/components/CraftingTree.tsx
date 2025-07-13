@@ -11,7 +11,7 @@ import { Button, Card, ListItem, Modal, ModalContent } from "./ui";
 interface CraftingTreeProps {
   itemId: string;
   quantity?: number;
-  onClose: () => void;
+  onClose?: () => void;
   isFullPage?: boolean;
 }
 
@@ -190,18 +190,15 @@ export function CraftingTree(
           {getMaterialIcon(itemId)}
           <div>
             <h3 className="text-lg font-medium text-white">
-              {t.materials[itemId as keyof typeof t.materials] || itemId}
+              {formatQuantity(quantity, showAsPacks, language)}x - {t.materials[itemId as keyof typeof t.materials] || itemId}
             </h3>
-            <p className="text-vanilla-grey-2">
-              {formatQuantity(quantity, showAsPacks, language)}
-            </p>
           </div>
         </div>
       </div>
 
       <ListItem className="p-1 m-4 w-auto h-auto">
         <div className="p-3">
-          <div className="flex items-center space-x-6 text-sm">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center space-x-6 text-sm">
             <div className="flex items-center space-x-2">
               <Button variant="success" size="sm" className="size-8 p-0">
                 ●
@@ -224,9 +221,10 @@ export function CraftingTree(
       </ListItem>
 
       <div
-        className={`p-4 overflow-y-auto ${
-          isFullPage ? "max-h-[calc(100vh-300px)]" : "max-h-[60vh]"
-        }`}
+        className={cn(
+          "p-4 overflow-y-auto",
+          isFullPage ? "" : "max-h-[60vh]",
+        )}
       >
         {renderNode(tree)}
       </div>
@@ -243,7 +241,7 @@ export function CraftingTree(
 
   if (isFullPage) {
     return (
-      <Card className="p-3">
+      <Card className="p-3 min-w-4xl">
         {content}
       </Card>
     );

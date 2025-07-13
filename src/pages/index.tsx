@@ -5,7 +5,7 @@ import { Select } from "@/components/ui/Select";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CalculationResult, CraftingSelection } from "@/types";
 import { RefinedStorageCalculator } from "@/utils/calculator";
-import { Globe } from "lucide-react";
+import { Globe, Github, ExternalLink } from "lucide-react";
 import { useMemo, useState } from "react";
 
 export default function Index() {
@@ -21,11 +21,23 @@ export default function Index() {
     return calculator.calculate(selection);
   }, [selection, calculator]);
 
+  const handleLanguageChange = (value: string) => {
+    if (value === "github") {
+      window.open("https://github.com/vitoUwu/refined-storage-calculator", "_blank");
+      return;
+    }
+    setLanguage(value);
+  };
+
+  const openGitHub = () => {
+    window.open("https://github.com/vitoUwu/refined-storage-calculator", "_blank");
+  };
+
   return (
     <div className="min-h-screen">
       <header className="bg-[#262423e6] shadow-[0_4px_0_0_rgba(0,0,0,.25)]">
         <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col md:flex-row gap-3 items-center justify-between">
             <div className="text-center flex-1">
               <h1 className="text-4xl font-medium text-white mb-2">
                 {t.appTitle}
@@ -38,16 +50,30 @@ export default function Index() {
               </p>
             </div>
 
-            <div className="flex items-center space-x-2">
-              <Globe className="w-5 h-5 text-gray-400" />
-              <Select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                className="w-40"
+            <div className="flex items-center space-x-4">
+              <Button
+                onClick={openGitHub}
+                variant="secondary"
+                size="sm"
+                className="flex items-center space-x-2"
+                title={t.viewOnGitHub}
               >
-                <option value="pt-BR">Português</option>
-                <option value="en">English</option>
-              </Select>
+                <Github className="w-4 h-4" />
+                <span>{t.github}</span>
+              </Button>
+
+              <div className="flex items-center space-x-2">
+                <Globe className="w-5 h-5 text-gray-400" />
+                <Select
+                  value={language}
+                  onChange={(e) => handleLanguageChange(e.target.value)}
+                  className="w-40"
+                >
+                  <option value="pt-BR">Português</option>
+                  <option value="en">English</option>
+                  <option value="github">{t.addLanguage}</option>
+                </Select>
+              </div>
             </div>
           </div>
         </div>
@@ -107,11 +133,34 @@ export default function Index() {
           </CardContent>
         </Card>
 
-        <footer className="mt-12 text-center text-gray-500 text-sm">
+        <footer className="mt-12 text-center text-gray-500 text-sm space-y-3">
           <p>
-            Calculadora de Recursos para Refined Storage • Todas as receitas
-            baseadas na versão mais recente do mod
+            {t.footerDescription}
           </p>
+          <div className="flex items-center justify-center space-x-4">
+            <Button
+              onClick={openGitHub}
+              variant="secondary"
+              size="sm"
+              className="flex items-center space-x-2 text-xs"
+            >
+              <Github className="w-3 h-3" />
+              <span>{t.contributeOnGitHub}</span>
+              <ExternalLink className="w-3 h-3" />
+            </Button>
+            <span className="text-gray-600">•</span>
+            <span className="text-gray-600">
+              {t.developedBy}{" "}
+              <a
+                href="https://github.com/vitoUwu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                vitoUwu
+              </a>
+            </span>
+          </div>
         </footer>
       </main>
     </div>

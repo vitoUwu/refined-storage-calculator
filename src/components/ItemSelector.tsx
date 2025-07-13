@@ -58,6 +58,14 @@ export function ItemSelector(
     navigate(`/crafting-tree?item=${itemId}&quantity=${quantity}`);
   };
 
+  const getTranslatedName = (recipe: Recipe) => {
+    return t.materials[recipe.output.item as keyof typeof t.materials] || recipe.name;
+  };
+
+  const getTranslatedCategory = (category: string) => {
+    return t.categories[category as keyof typeof t.categories] || category;
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -83,8 +91,7 @@ export function ItemSelector(
               <option value="">{t.allCategories}</option>
               {categories.map((category) => (
                 <option key={category} value={category}>
-                  {t.categories[category as keyof typeof t.categories] ||
-                    category}
+                  {getTranslatedCategory(category)}
                 </option>
               ))}
             </Select>
@@ -95,6 +102,7 @@ export function ItemSelector(
           {filteredRecipes.map((recipe) => (
             <ListItem
               key={recipe.id}
+              className="flex-col lg:flex-row h-auto p-3 items-start"
             >
               <div className="flex items-center space-x-3 flex-1">
                 <div className="flex-shrink-0">
@@ -106,10 +114,10 @@ export function ItemSelector(
 
                 <div className="flex-1">
                   <h3 className="text-core-grey-1 leading-none font-medium">
-                    {recipe.name}
+                    {getTranslatedName(recipe)}
                   </h3>
                   <p className="text-core-grey-2 text-sm leading-none">
-                    {recipe.category}
+                    {getTranslatedCategory(recipe.category)}
                   </p>
                 </div>
               </div>
@@ -209,14 +217,15 @@ export function ItemSelector(
               })}
             </ul>
 
-            <Button
-              onClick={() => onSelectionChange({})}
-              variant="danger"
-              size="sm"
-              className="mt-4"
-            >
-              {t.clearSelection}
-            </Button>
+            <div className="mt-4 flex justify-between items-center">
+              <Button
+                onClick={() => onSelectionChange({})}
+                variant="danger"
+                size="sm"
+              >
+                {t.clearSelection}
+              </Button>
+            </div>
           </div>
         )}
       </CardContent>

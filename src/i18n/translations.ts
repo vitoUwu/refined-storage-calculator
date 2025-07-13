@@ -43,6 +43,15 @@ export interface Translation {
   step3Title: string;
   step3Description: string;
 
+  // GitHub & Footer
+  github: string;
+  viewOnGitHub: string;
+  contributeOnGitHub: string;
+  developedBy: string;
+  footerDescription: string;
+  addLanguage: string;
+  back: string;
+
   // Categories
   categories: {
     "Materiais Base": string;
@@ -72,9 +81,12 @@ export interface Translation {
     glass: string;
     crafting_table: string;
     quartz_enriched_iron: string;
+    quartz_enriched_iron_block: string;
     silicon: string;
     string: string;
     slimeball: string;
+    glowstone_dust: string;
+    stone: string;
     processor_binding: string;
     raw_basic_processor: string;
     raw_improved_processor: string;
@@ -170,7 +182,7 @@ export const translations: { [key: string]: Translation } = {
     totalIntermediateItems: "Total de itens intermediários",
     selectItemsToSee: "Selecione items para ver os materiais necessários",
     displayMode: "Modo de exibição",
-    showAsPacks: "Mostrar como pacotes",
+    showAsPacks: "Mostrar em Packs",
     showAsQuantity: "Mostrar como quantidade",
 
     // Crafting Tree
@@ -188,6 +200,15 @@ export const translations: { [key: string]: Translation } = {
     step3Title: "3. Veja os Resultados",
     step3Description:
       "Veja o detalhamento completo de todos os materiais necessários",
+
+    // GitHub & Footer
+    github: "GitHub",
+    viewOnGitHub: "Ver no GitHub",
+    contributeOnGitHub: "Contribuir no GitHub",
+    developedBy: "Desenvolvido por",
+    footerDescription: "Calculadora de Recursos para Refined Storage • Todas as receitas baseadas na versão mais recente do mod",
+    addLanguage: "+ Adicionar",
+    back: "Voltar",
 
     // Categories
     categories: {
@@ -218,9 +239,12 @@ export const translations: { [key: string]: Translation } = {
       glass: "Vidro",
       crafting_table: "Mesa de Trabalho",
       quartz_enriched_iron: "Ferro Enriquecido com Quartzo",
+      quartz_enriched_iron_block: "Bloco de Ferro Enriquecido com Quartzo",
       silicon: "Silício",
       string: "Barbante",
       slimeball: "Bola de Slime",
+      glowstone_dust: "Pó de Pedra Luminosa",
+      stone: "Pedra",
       processor_binding: "Encadernação de Processador",
       raw_basic_processor: "Processador Básico Bruto",
       raw_improved_processor: "Processador Melhorado Bruto",
@@ -332,6 +356,15 @@ export const translations: { [key: string]: Translation } = {
     step3Title: "3. View Results",
     step3Description: "See the complete breakdown of all required materials",
 
+    // GitHub & Footer
+    github: "GitHub",
+    viewOnGitHub: "View on GitHub",
+    contributeOnGitHub: "Contribute on GitHub",
+    developedBy: "Developed by",
+    footerDescription: "Resource Calculator for Refined Storage • All recipes based on the latest mod version",
+    addLanguage: "+ Add",
+    back: "Back",
+
     // Categories
     categories: {
       "Materiais Base": "Base Materials",
@@ -361,9 +394,12 @@ export const translations: { [key: string]: Translation } = {
       glass: "Glass",
       crafting_table: "Crafting Table",
       quartz_enriched_iron: "Quartz Enriched Iron",
+      quartz_enriched_iron_block: "Block of Quartz Enriched Iron",
       silicon: "Silicon",
       string: "String",
       slimeball: "Slimeball",
+      glowstone_dust: "Glowstone Dust",
+      stone: "Stone",
       processor_binding: "Processor Binding",
       raw_basic_processor: "Raw Basic Processor",
       raw_improved_processor: "Raw Improved Processor",

@@ -61,16 +61,16 @@ export function ResultsDisplay({ results }: ResultsDisplayProps) {
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col md:flex-row gap-3 items-start md:items-center justify-between">
           <h2 className="text-2xl font-medium text-white">
             {t.requiredMaterials}
           </h2>
-          <div className="flex flex-col items-end">
+          <div className="flex justify-between md:justify-start w-full md:flex-col items-end">
             <Button
               onClick={() => setShowBreakdown(!showBreakdown)}
               variant="primary"
               size="sm"
-              className="shrink-0 w-full"
+              className="shrink-0 md:w-full"
             >
               {showBreakdown ? t.hideDetails : t.showDetails}
             </Button>
